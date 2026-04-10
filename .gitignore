@@ -52,3 +52,29 @@ compile_commands.json
 *creator.user*
 
 *_qmlcache.qrc
+
+# 忽略 Qt Creator 的构建目录
+build/
+build-*/
+
+# 忽略 Qt Creator 的用户配置（包含你本地的绝对路径，别人用不了）
+*.pro.user
+*.creator
+*.creator.user
+*.config
+
+# 忽略编译生成的文件
+*.o
+*.obj
+*.exe
+*.a
+*.so
+*.dll
+Makefile
+Makefile.*
+ui_*.h
+moc_*.cpp
+qrc_*.cpp
+
+# 忽略调试文件
+*.pdb
