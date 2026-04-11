@@ -1,6 +1,7 @@
 #include "startscene.h"
-#include <QPushButton>
+
 #include <QLabel>
+#include <QPushButton>
 #include <QVBoxLayout>
 #include <QApplication>
 
@@ -21,11 +22,7 @@ StartScene::StartScene(QWidget *parent)
         );
 
     startButton=new QPushButton("开始游戏",this);
-    quitButton=new QPushButton("退出游戏",this);
-
     startButton->setFixedSize(150,50);
-    quitButton->setFixedSize(150,50);
-
     startButton->setStyleSheet(
         "color:black;"
         "background-color:yellow;"
@@ -33,6 +30,9 @@ StartScene::StartScene(QWidget *parent)
         "border-radius:18px;"
         "border:1px solid black;"
         );
+
+    quitButton=new QPushButton("退出游戏",this);
+    quitButton->setFixedSize(150,50);
     quitButton->setStyleSheet(
         "color:black;"
         "background-color:yellow;"

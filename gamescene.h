@@ -7,6 +7,7 @@
 class QLabel;
 class QPushButton;
 class QVBoxLayout;
+class QHBoxLayout;
 
 class GameScene : public QWidget
 {
@@ -15,14 +16,17 @@ public:
     explicit GameScene(QWidget *parent = nullptr);
 private:
     QLabel *waitingScene;
-    QPushButton *returnButton;
-    QVBoxLayout *layout;
+    QPushButton *backButton,*pauseButton;
+    QVBoxLayout *mainlayout;
+    QHBoxLayout *toplayout;
 
 private slots:
-    void onReturnButtonClicked();
+    void onBackButtonClicked();
+    void onPauseButtonClicked();
 
 signals:
-    void returnClicked();
+    void backClicked();
+    void pauseClicked();
 };
 
 #endif // GAMESCENE_H

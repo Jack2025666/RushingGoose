@@ -3,6 +3,7 @@
 
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
 
 GameScene::GameScene(QWidget *parent)
     : QWidget{parent}
@@ -19,10 +20,10 @@ GameScene::GameScene(QWidget *parent)
         "border:1px solid black;"
         );
 
-    returnButton=new QPushButton("返回",this);
+    backButton=new QPushButton("返回",this);
 
-    returnButton->setFixedSize(75,50);
-    returnButton->setStyleSheet(
+    backButton->setFixedSize(75,50);
+    backButton->setStyleSheet(
         "color:red;"
         "background-color:yellow;"
         "font-size:18px;"
@@ -30,14 +31,38 @@ GameScene::GameScene(QWidget *parent)
         "border:1px solid black;"
         );
 
-    layout=new QVBoxLayout(this);
-    layout->addStretch();
-    layout->addWidget(waitingScene,0,Qt::AlignHCenter);
-    layout->addStretch();
+    pauseButton=new QPushButton("暂停" ,this);
 
-    connect(returnButton,&QPushButton::clicked,this,&GameScene::onReturnButtonClicked);
+    pauseButton->setFixedSize(75,50);
+    pauseButton->setStyleSheet(
+        "color:red;"
+        "background-color:yellow;"
+        "font-size:18px;"
+        "border-radius:18px;"
+        "border:1px solid black;"
+        );
+
+    mainlayout=new QVBoxLayout(this);
+
+    toplayout=new QHBoxLayout(this);
+
+    toplayout->setContentsMargins(20,20,20,20);
+    toplayout->addWidget(backButton,0,Qt::AlignLeft|Qt::AlignTop);
+    toplayout->addStretch();
+    toplayout->addWidget(pauseButton,0,Qt::AlignRight|Qt::AlignTop);
+
+    mainlayout->addLayout(toplayout);
+    mainlayout->addStretch();
+    mainlayout->addWidget(waitingScene,0,Qt::AlignHCenter);
+    mainlayout->addStretch();
+
+    connect(backButton,&QPushButton::clicked,this,&GameScene::onBackButtonClicked);
+    connect(pauseButton,&QPushButton::clicked,this,&GameScene::onPauseButtonClicked);
 
 }
-void GameScene::onReturnButtonClicked(){
-    emit returnClicked();
+void GameScene::onBackButtonClicked(){
+    emit backClicked();
+}
+void GameScene::onPauseButtonClicked(){
+    emit pauseClicked();
 }

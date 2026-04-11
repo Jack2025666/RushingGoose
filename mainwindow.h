@@ -20,7 +20,6 @@ public:
     ~MainWindow() override;
 
 private:
-    Ui::MainWindow *ui;
     QStackedWidget *stackedWidget;
 };
 #endif // MAINWINDOW_H

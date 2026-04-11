@@ -11,16 +11,15 @@ SOURCES += \
     gamescene.cpp \
     main.cpp \
     mainwindow.cpp \
+    pausescene.cpp \
     startscene.cpp
 
 HEADERS += \
     gameoverscene.h \
     gamescene.h \
     mainwindow.h \
+    pausescene.h \
     startscene.h
-
-FORMS += \
-    mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
