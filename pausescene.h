@@ -16,15 +16,15 @@ public:
     explicit PauseScene(QWidget *parent = nullptr);
 private:
     QLabel *pauseLabel;
-    QPushButton *backButton;
+    QPushButton *continueButton;
     QPushButton *quitButton;
     QVBoxLayout *mainlayout;
     QHBoxLayout *bottomlayout;
 private slots:
-    void onBackButtonClicked();
+    void onContinueButtonClicked();
     void onQuitButtonClicked();
 signals:
-    void backClicked();
+    void continueClicked();
     void quitClicked();
 };
 
