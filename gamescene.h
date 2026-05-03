@@ -7,12 +7,12 @@
 #include <QFrame>
 #include <QResizeEvent>
 
-class QLabel;
 class QPushButton;
 class QVBoxLayout;
 class QHBoxLayout;
 class QTimer;
 class QFrame;
+class Player;
 
 class GameScene : public QWidget
 {
@@ -28,7 +28,7 @@ private:
     QHBoxLayout *toplayout;
     QTimer *gametimer;
     QFrame *ground;
-    QLabel *player;
+    Player *player;
 
     int groundH;
     int playerY;
@@ -36,6 +36,7 @@ private:
 private slots:
     void onBackButtonClicked();
     void onPauseButtonClicked();
+    void updateTime();
 
 signals:
     void backClicked();

@@ -14,16 +14,16 @@ MainWindow::MainWindow(QWidget *parent)
     this->resize(800,600);
     this->setMinimumSize(800,600);
     //将页面添加到QStackedWidget
-    StartScene *startScene=new StartScene(this);
-    GameScene *gameScene=new GameScene(this);
-    GameoverScene *gameoverScene=new GameoverScene(this);
-    PauseScene *pauseScece=new PauseScene(this);
+    startScene=new StartScene(this);
+    gameScene=new GameScene(this);
+    gameoverScene=new GameoverScene(this);
+    pauseScene=new PauseScene(this);
 
     stackedWidget=new QStackedWidget(this);
     setCentralWidget(stackedWidget);
     stackedWidget->addWidget(startScene);
     stackedWidget->addWidget(gameScene);
-    stackedWidget->addWidget(pauseScece);
+    stackedWidget->addWidget(pauseScene);
     stackedWidget->addWidget(gameoverScene);
     //接收开始游戏信号
     connect(startScene,&StartScene::startGameClicked,this,[this](){stackedWidget->setCurrentIndex(1);});
@@ -31,8 +31,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(gameScene,&GameScene::backClicked,this,[this](){stackedWidget->setCurrentIndex(0);});
     connect(gameScene,&GameScene::pauseClicked,this,[this](){stackedWidget->setCurrentIndex(2);});
     //接收继续游戏和退出游戏信号
-    connect(pauseScece,&PauseScene::continueClicked,this,[this](){stackedWidget->setCurrentIndex(1);});
-    connect(pauseScece,&PauseScene::quitClicked,this,[this](){stackedWidget->setCurrentIndex(0);});
+    connect(pauseScene,&PauseScene::continueClicked,this,[this](){stackedWidget->setCurrentIndex(1);});
+    connect(pauseScene,&PauseScene::quitClicked,this,[this](){stackedWidget->setCurrentIndex(0);});
 }
 MainWindow::~MainWindow()
 {

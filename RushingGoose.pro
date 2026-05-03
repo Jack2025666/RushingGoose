@@ -12,6 +12,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     pausescene.cpp \
+    player.cpp \
     startscene.cpp
 
 HEADERS += \
@@ -19,6 +20,7 @@ HEADERS += \
     gamescene.h \
     mainwindow.h \
     pausescene.h \
+    player.h \
     startscene.h
 
 # Default rules for deployment.

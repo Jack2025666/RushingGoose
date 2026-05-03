@@ -1,9 +1,10 @@
 #include "gamescene.h"
-#include <QLabel>
+#include "player.h"
 #include <QFrame>
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QTimer>
 
 GameScene::GameScene(QWidget *parent)
     : QWidget{parent}
@@ -17,6 +18,7 @@ GameScene::GameScene(QWidget *parent)
         "border-radius:18px;"
         "border:1px solid black;"
         );
+    backButton->setFocusPolicy(Qt::NoFocus);
     //设置暂停按钮
     pauseButton=new QPushButton("暂停" ,this);
     pauseButton->setFixedSize(75,50);
@@ -27,6 +29,7 @@ GameScene::GameScene(QWidget *parent)
         "border-radius:18px;"
         "border:1px solid black;"
         );
+    pauseButton->setFocusPolicy(Qt::NoFocus);
     //设置地面
     ground=new QFrame(this);
     ground->setFrameShape(QFrame::Box);
@@ -37,11 +40,9 @@ GameScene::GameScene(QWidget *parent)
         "background-color:green；"
         );
 
-    player=new QLabel(this);
-    player->setFixedSize(50,80);
-    player->setStyleSheet(
-        "background-color:white;"
-        );
+    player=new Player(this);
+    player->setFocus();
+    player->show();
 
     //设置页面布局
     mainlayout=new QVBoxLayout(this);
@@ -62,7 +63,13 @@ GameScene::GameScene(QWidget *parent)
     //发出返回主界面和暂停信号
     connect(backButton,&QPushButton::clicked,this,&GameScene::onBackButtonClicked);
     connect(pauseButton,&QPushButton::clicked,this,&GameScene::onPauseButtonClicked);
+
+    //设置计时器
+    gametimer=new QTimer(this);
+    connect(gametimer,&QTimer::timeout,this,&GameScene::updateTime);
+    gametimer->start(100);
 }
+//使玩家随窗口大小变化始终处于地面上
 void GameScene::resizeEvent(QResizeEvent *event){
     QWidget::resizeEvent(event);
     groundH=150;
@@ -74,4 +81,7 @@ void GameScene::onBackButtonClicked(){
 }
 void GameScene::onPauseButtonClicked(){
     emit pauseClicked();
+}
+void GameScene::updateTime(){
+    player->Player::fall();
 }

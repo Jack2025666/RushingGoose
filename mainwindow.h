@@ -4,6 +4,10 @@
 #include <QMainWindow>
 
 class QStackedWidget;
+class StartScene;
+class GameScene;
+class PauseScene;
+class GameoverScene;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -18,6 +22,10 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
+    StartScene *startScene;
+    GameScene *gameScene;
+    PauseScene *pauseScene;
+    GameoverScene *gameoverScene;
 
 private:
     QStackedWidget *stackedWidget;
