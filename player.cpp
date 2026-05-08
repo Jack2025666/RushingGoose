@@ -3,6 +3,7 @@
 #include <QWidget>
 #include <QKeyEvent>
 
+//设置方块样式
 Player::Player(QWidget *parent):QLabel(parent)
 {
     this->setFixedSize(50,80);
@@ -12,6 +13,7 @@ Player::Player(QWidget *parent):QLabel(parent)
     this->setFocusPolicy(Qt::StrongFocus);
     this->setFocus();
 }
+//键盘捕捉
 void Player::keyPressEvent(QKeyEvent *event){
     if(event->key()==Qt::Key_Space){
         this->Player::jump();
@@ -19,11 +21,14 @@ void Player::keyPressEvent(QKeyEvent *event){
         return;
     }
 }
+//跳跃函数
 void Player::jump(){
     if(velocity==0){
-    velocity=-10;
+    velocity=-15;
     }
+    qDebug()<<"Jump!The velocity is "<<velocity;
 }
+//下落函数
 void Player::fall(){
     this->move(this->x(),this->y()+velocity);
     velocity++;

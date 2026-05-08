@@ -1,5 +1,5 @@
 #include "pausescene.h"
-
+#include "gamescene.h"
 #include <QLabel>
 #include <QPushButton>
 #include <QVBoxLayout>
@@ -8,6 +8,16 @@
 PauseScene::PauseScene(QWidget *parent)
     : QWidget{parent}
 {
+    //设置背景图
+    this->setAttribute(Qt::WA_StyledBackground,true);
+    this->setStyleSheet(
+        "PauseScene {"
+        "background-image:url(:/image/pausescene.png);"
+        "background-repeat:no-repeat;"
+        "background-position:center;"
+        "background-attachment:fixed;"
+        "}"
+        );
     //设置暂停标题
     pauseLabel=new QLabel("游戏暂停",this);
     pauseLabel->setFixedSize(300,80);
@@ -23,21 +33,31 @@ PauseScene::PauseScene(QWidget *parent)
     continueButton=new QPushButton("继续游戏",this);
     continueButton->setFixedSize(125,50);
     continueButton->setStyleSheet(
+        "QPushButton {"
         "color:black;"
-        "background-color:yellow;"
+        "background-color:rgba(255,255,255,200);"
         "font-size:18px;"
         "border-radius:18px;"
         "border:1px solid black;"
+        "}"
+        "QPushButton:hover {"
+        "background-color:rgba(255,255,255,150);"
+        "}"
         );
     //设置退出按钮
     quitButton=new QPushButton("退出游戏",this);
     quitButton->setFixedSize(125,50);
     quitButton->setStyleSheet(
+        "QPushButton {"
         "color:black;"
-        "background-color:yellow;"
+        "background-color:rgba(255,255,255,200);"
         "font-size:18px;"
         "border-radius:18px;"
         "border:1px solid black;"
+        "}"
+        "QPushButton:hover {"
+        "background-color:rgba(255,255,255,150);"
+        "}"
         );
     //设置页面布局
     mainlayout=new QVBoxLayout(this);
@@ -61,6 +81,7 @@ PauseScene::PauseScene(QWidget *parent)
 }
 void PauseScene::onContinueButtonClicked(){
     emit continueClicked();
+    GameScene::gameRunning=true;
 }
 void PauseScene::onQuitButtonClicked(){
     emit quitClicked();

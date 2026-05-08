@@ -1,3 +1,7 @@
 <RCC>
-    <qresource prefix="/images"/>
+    <qresource prefix="/image">
+        <file>startscene.jpg</file>
+        <file>gamescene.jpg</file>
+        <file>pausescene.png</file>
+    </qresource>
 </RCC>
