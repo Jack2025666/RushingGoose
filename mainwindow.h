@@ -22,12 +22,25 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
+
+private:
+    QStackedWidget *stackedWidget;
     StartScene *startScene;
     GameScene *gameScene;
     PauseScene *pauseScene;
     GameoverScene *gameoverScene;
 
-private:
-    QStackedWidget *stackedWidget;
+    enum PageIndex {
+        StartPage = 0,
+        GamePage = 1,
+        PausePage = 2,
+        GameoverPage = 3
+    };
+
+private slots:
+    void onGameOver(int finalScore);
+    void onRestartGame();
+    void onBackToMenu();
 };
+
 #endif // MAINWINDOW_H

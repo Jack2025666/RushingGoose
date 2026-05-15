@@ -81,7 +81,7 @@ PauseScene::PauseScene(QWidget *parent)
 }
 void PauseScene::onContinueButtonClicked(){
     emit continueClicked();
-    GameScene::gameRunning=true;
+
 }
 void PauseScene::onQuitButtonClicked(){
     emit quitClicked();
